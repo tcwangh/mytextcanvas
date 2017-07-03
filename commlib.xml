@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="commlib">
+	
+	<path id="project.classpath">
+		<fileset dir="${weblogic.libdir}">
+	        <include name="**/*.jar"/>
+	    </fileset>
+	    <fileset dir="${weblogic.module.dir}">
+	        <include name="**/*.jar"/>
+	    </fileset>
+	</path>
+	
+	<path id="compile.classpath">
+		<fileset dir="WebContent/WEB-INF/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+	
+	<path id="tomcat.classpath">
+		<fileset dir="${tomcat.home}/lib">
+			<include name="*.jar"/> 
+		</fileset>
+		<fileset dir="${tomcat.home}/bin"> 
+			<include name="*.jar"/> 
+		</fileset>
+	</path>
+	
+	<path id="mysql_connector-5.1.21.class.path">
+		<pathelement location="../../Library/Mysql_connector-5.1.21/mysql-connector-java-5.1.21-bin.jar" />
+	</path>
+	
+	<path id="weblogic10.3.classpath">
+	    <pathelement path="../../Library/weblogic-10.3/wlfullclient.jar" />
+	    <pathelement path="../../Library/weblogic-10.3/weblogic.jar" />
+	    <pathelement path="../../Library/weblogic-10.3/com.bea.core.descriptor.wl_1.1.0.0.jar" />
+	</path>
+	
+	<path id="poi-3.13.class.path">
+		<pathelement location="../../Library/poi-3.13/poi-3.13.jar" />
+		<pathelement location="../../Library/poi-3.13/poi-ooxml-3.13.jar" />
+		<pathelement location="../../Library/poi-3.13/poi-ooxml-schemas-3.13.jar" />
+	</path>
+	
+	<path id="log4j-1.2.17.classpath">
+		<pathelement location="../../Library/log4j-1.2.17/log4j-1.2.17.jar" />
+	</path>
+	
+</project>

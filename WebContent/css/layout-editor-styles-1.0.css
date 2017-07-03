@@ -1,0 +1,145 @@
+@CHARSET "UTF-8";
+
+/*
+.imgIcon{
+	width:30px;
+	height:30px;
+	padding-top: 4px;
+	padding-left: 4px;
+	padding-right: 4px;
+}
+.funcIcon{
+	border:1px solid #B28666;
+}
+.funcIcon:hover{
+	border-top:1px solid #FFFFFF;
+	border-left:1px solid #FFFFFF;
+	border-right:1px solid #CECECE;
+	border-bottom:1px solid #CECECE;
+	border-radius:4px;
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #E7EDF1), color-stop(1, #BACBD5));
+    background-image: -webkit-linear-gradient(top, #E7EDF1 0%, #BACBD5 100%);
+}
+*/
+.imgIcon{
+	width:30px;
+	height:30px;
+	padding-top: 4px;
+	padding-left: 4px;
+	padding-right: 4px;
+}
+.funcIcon{
+	border:1px solid #FFF5D2;
+}
+.funcIcon:hover{
+	border-top:1px solid #FFFFFF;
+	border-left:1px solid #FFFFFF;
+	border-right:1px solid #CECECE;
+	border-bottom:1px solid #CECECE;
+	border-radius:4px;
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #E7EDF1), color-stop(1, #BACBD5));
+    background-image: -webkit-linear-gradient(top, #E7EDF1 0%, #BACBD5 100%);
+}
+.tabControls {
+	margin: 1px;
+    background-color: rgb(127,127,127);
+}
+.tabControls li{
+	display:inline-block;
+	word-wrap:break-word;
+	width:24%;
+}
+.tabControls li a {
+	display:block;
+	padding:0.5em 1em;
+	background:#333;
+	color:#fff;
+	border-radius: 8px 8px 0 0;
+	margin-right:2px;
+}
+.tabControls li.current a, .tabControls li a:hover {
+	color:#333;
+	background:#f0f0f0;
+}
+.tabContentsContainer {
+	top:0;
+	left:0;
+	width:inherit;
+	border: 1px solid rgb(58,58,58);
+	white-space: pre;
+	font-family: monospace;
+	font-size: 13px;
+}
+#tab_source {
+	outline:none;
+}
+.xml_symbol {
+	color: rgb(136,18,128);
+}
+.xml_tagName {
+	color: rgb(136,18,128);
+}
+.xml_closingTagName {
+	color: rgb(136,18,128);
+}
+.xml_attrName {
+	color: rgb(153,69,0);
+}
+.xml_attrValue {
+	color: rgb(26,26,166);
+}
+.xml_comment {
+	color: rgb(35, 110, 37);
+}
+.xml_commentSymbol {
+	color: rgb(35, 110, 37);
+}
+.xml_quotation {
+	color: rgb(153,69,0);
+}
+.xml_NodeValue {
+	color:black;
+}
+.xml_line:hover {
+	background-color : rgb(218,218,218);
+}
+.forum_hover {
+	background-color : rgb(218,218,218) !important;
+}
+.xml_collapsible {
+	background-color : inherit;
+}
+.forum_select {
+	background-color : rgb(255,255,157);
+}
+.forum_change {
+	background-color : rgb(255,0,0);
+}
+.forum_readonly{
+	background-color : rgb(195,195,195);
+	color:rgb(0,0,0);
+}
+#consoleDiv {
+	
+}
+#simulateAgDiv {
+	padding:1px;
+	height:310px;
+}
+.runningLog {
+	font-family: monospace;
+	font-size: 13px;
+	padding: 5px;
+    background: white;
+    height:300px;
+    width:390px;
+    overflow:scroll;
+}
+.xmlCtrlIcon{
+	width:10px;
+	height:10px;
+	padding-top: 3px;
+}
+.xml_collapsibleicon {
+	float:left;
+}

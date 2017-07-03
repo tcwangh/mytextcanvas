@@ -1,0 +1,50 @@
+@CHARSET "BIG5";
+
+.dialogIcon{
+	border:1px solid #FFF5D2;
+}
+.top-info{
+	width:100%;
+	min-height: 200px;
+	box-sizing:border-box;
+	float:left;
+}
+.top-left{
+	width:40%;
+	height:300px;
+	float:left;
+	overflow: scroll;
+	box-sizing:border-box;
+}
+.top-center{
+	width:20%;
+	height:300px;
+	background-color:#f1f1f1;
+	float:left;
+}
+.top-right{
+	width:38%;
+	height:300px;
+	float:right;
+	background-color:#ccc;
+	overflow: scroll;
+}
+.buttom-info {
+	width:100%;
+	min-height: 200px;
+	float:left;
+	padding-top: 20px;
+}
+.CodeMirror{
+	height: 200px;
+}
+.form-element {
+	width:100%;
+	border:1px solid #151515;
+	padding:4px 10px;
+}
+
+.form-item label{
+	margin-bottom:5px;
+	display:block;
+}

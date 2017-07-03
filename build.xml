@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="mytextcanvas">
+	<property file="build.properties" />
+	<import file="commlib.xml" />
+	<import file="../../Library/imports/common_task_weblogic.xml" />
+		
+	<tstamp prefix="build-info">
+		<format property="current-date" pattern="d-MMMM-yyyy" locale="en" />
+		<format property="current-time" pattern="hh:mm:ss a z" locale="en" />
+		<format property="year-month-day" pattern="yyyy-MM-dd" locale="en" />
+	</tstamp>
+	<taskdef name="start" classname="org.apache.catalina.ant.StartTask" classpathref="tomcat.classpath"/>
+	<taskdef name="stop" classname="org.apache.catalina.ant.StopTask" classpathref="tomcat.classpath"/>
+	<taskdef name="deploy" classname="org.apache.catalina.ant.DeployTask" classpathref="tomcat.classpath" />
+	<taskdef name="undeploy" classname="org.apache.catalina.ant.UndeployTask" classpathref="tomcat.classpath"/>
+		
+	<target name="echo">
+		<echo message="tomcat.home=${tomcat.home}" />
+		<echo message="app.dir = ${app.dir}" />
+		<echo message="build.dir=${build.dir}" />
+	</target>
+	
+	<target name="clean" depends="echo">
+		<delete dir="${build.dir}" />
+		<delete dir="${warfile.dir}" />
+	</target>
+	
+	<target name="init" depends="clean">
+		<mkdir dir="${build.classes.dir}" />
+		<mkdir dir="${warfile.dir}" />
+	</target>
+		
+	<target name="compile" depends="init" >
+		<javac destdir="${build.classes.dir}" debug="true" srcdir="src" encoding="UTF-8">
+			<classpath refid="compile.classpath"/>
+			<classpath refid="tomcat.classpath" />
+			<classpath refid="log4j-1.2.17.classpath" />
+		</javac>
+	</target>
+	
+	<target name="build-war" depends="compile">
+		<war destfile="${warfile.dir}/${app.name}.war" needxmlfile="false">
+			<fileset dir="WebContent"/>
+			<lib dir="WebContent/WEB-INF/lib"/>
+			<classes dir="build/classes"/>
+			<manifest>
+				<attribute name="Built-By" value="${builder}" />
+				<attribute name="Built-On" value="${build-info.current-date}" />
+				<attribute name="Built-At" value="${build-info.current-time}" />
+			</manifest>
+		</war>
+	</target>
+	
+	<target name="deploy-war" depends="build-war">
+		<copy todir="${tomcat.home}/webapps">
+			<fileset dir="${warfile.dir}" includes="*.war" />
+		</copy>
+	</target>
+	
+	<target name="deploy" description="deploy to tomcat">
+		<echo>deploying from client</echo>
+		<echo>${tomcat.home}/lib</echo>
+		<deploy 
+			url="${tomcat-manager-url}"
+			username="${tomcat-manager-username}"
+			password="${tomcat-manager-password}"
+			path="/${project-name}"
+			war="${warfile.dir}/${app.name}.war"
+		/>
+	</target>
+	
+	<target name="start" description="start application in tomcat">
+		<start url="${tomcat-manager-url}" username="${tomcat-manager-username}"
+		password="${tomcat-manager-password}" path="/${project-name}" />
+	</target>
+	
+	<target name="stop" description="stop application in tomcat">
+		<stop url="${tomcat-manager-url}" username="${tomcat-manager-username}"
+			password="${tomcat-manager-password}" path="/${project-name}" />
+	</target>
+	
+	<target name="undeploy" description="undeploy from tomcat">
+		<undeploy 
+			failonerror="no"
+			url="${tomcat-manager-url}"
+			username="${tomcat-manager-username}"
+			password="${tomcat-manager-password}"
+			path="/${project-name}"
+		/>
+	</target>
+
+	<target name="start-tomcat">
+	    <java jar="${tomcat.home}/bin/bootstrap.jar" fork="true" classpathref="tomcat.classpath">
+	        <jvmarg value="-Dcatalina.home=${tomcat.home}"/>
+	    </java>
+	</target>
+		
+	<target name="stop-tomcat">
+	    <java jar="${tomcat.home}/bin/bootstrap.jar" fork="true">
+	        <jvmarg value="-Dcatalina.home=${tomcat.home}"/>
+	        <arg line="stop"/>
+	    </java>
+	</target>
+
+	<target name="tomcat-start-debug">
+	    <java jar="${tomcat.home}/bin/bootstrap.jar" fork="true">
+	        <jvmarg value="-Dcatalina.home=${tomcat.home}"/>
+	        <jvmarg value="-Xdebug"/>
+	        <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n"/>
+	    </java>
+	</target>
+	
+	<target name="create.table.mysql">
+		<sql driver="com.mysql.jdbc.Driver" url="${database.url.mysql}"	
+			userid="${database.username.mysql}" password="${database.password.mysql}">
+			<classpath>
+				<path refid="mysql_connector-5.1.21.class.path" />
+			</classpath>
+			<fileset dir="${db.mysql.dir}">
+				<!-- <include name="accounts.sql" /> -->
+				<!--<include name="stocks.sql" /> -->
+				<include name="stockhis.sql" />
+				<!--<include name="moneybook.sql" /> -->
+				<!--<include name="user.sql" />-->
+				<!--<include name="moneytrns.sql" /> -->
+				<!-- <include name="stockbook.sql" /> -->
+			</fileset>
+		</sql>
+	</target>
+	
+</project>
